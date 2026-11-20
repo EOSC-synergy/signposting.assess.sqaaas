@@ -1,0 +1,46 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/Academic-Journals-cz/signposting:
+      branch: v3.3.0.0
+      repo: https://github.com/Academic-Journals-cz/signposting
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: fix/updatego
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/Academic-Journals-cz/signposting git:
+        commands:
+        - /usr/bin/env sh .sqa/script.gamboge_nurturing_walrus.sh
+        container: qc.acc_ecru_meticulous_peacock
+  QC.Doc:
+    repos:
+      github.com/Academic-Journals-cz/signposting find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.scarlet_cranky_emu.sh
+        container: qc.doc_moss_kind_gazelle
+      github.com/Academic-Journals-cz/signposting git:
+        commands:
+        - /usr/bin/env sh .sqa/script.claret_lively_buffalo.sh
+        container: qc.doc_currant_sincere_roadrunner
+      github.com/Academic-Journals-cz/signposting markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.peony_melancholy_hamster.sh
+        container: qc.doc_cardamom_reserved_cougar
+  QC.Lic:
+    repos:
+      github.com/Academic-Journals-cz/signposting licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.raven_warm_boar.sh
+        container: qc.lic_aquamarine_respectful_skunk
+  QC.Ver:
+    repos:
+      github.com/Academic-Journals-cz/signposting get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.gamboge_lively_chipmunk.sh
+        container: qc.ver_turquoise_alert_heron
+timeout: 5400
